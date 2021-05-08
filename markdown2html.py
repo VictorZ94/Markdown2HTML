@@ -3,7 +3,7 @@
 """
 from sys import argv
 from sys import stderr
-
+from markdown import markdown
 
 if __name__ == "__main__":
     """ Convert Markdown to HTML file
@@ -14,8 +14,9 @@ if __name__ == "__main__":
               file=stderr)
         exit(1)
     try:
-        with open('{}'.format(argv[1])) as my_file:
-            pass
+        with open(f'{argv[1]}') as reader, \
+             open(f'{argv[2]}', 'w') as writer:
+            writer.write(markdown(reader.read()))
     except IOError:
         print("Missing {}".format(argv[1]), file=stderr)
         exit(1)
