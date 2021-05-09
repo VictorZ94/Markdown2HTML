@@ -16,7 +16,8 @@ if __name__ == "__main__":
             heading = i.split(' ')[0]
             content = " ".join(i.split()[1:])
             mark = markdown.get(heading)
-            list_final.append(mark.format(content))
+            if isinstance(mark, str):
+                list_final.append(mark.format(content))
         return ('\n'.join(list_final) + '\n')
 
     markdown = {'#': '<h1>{}</h1>',
