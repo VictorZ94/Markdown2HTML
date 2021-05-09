@@ -14,7 +14,7 @@ if __name__ == "__main__":
         list_final = []
         for i in list_of_heading:
             heading = i.split(' ')[0]
-            content = " ".join(i.split(' ')[1:])
+            content = " ".join(i.split()[1:])
             mark = markdown.get(heading)
             list_final.append(mark.format(content))
         return ('\n'.join(list_final) + '\n')
@@ -32,8 +32,8 @@ if __name__ == "__main__":
               file=stderr)
         exit(1)
     try:
-        list_of_heading = []
         with open(f'{argv[1]}') as reader, open(f'{argv[2]}', 'w') as writer:
+            list_of_heading = []
             for line in reader:
                 list_of_heading.append(line.split('\n')[0])
             writer.write(heading_func(list_of_heading))
